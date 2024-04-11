@@ -12,6 +12,7 @@ export class ProductService {
         {id: 5, categoryId: 5, productName: "Sony XZ3", price: 3500000},
         {id: 6, categoryId: 6, productName: "Sony XZ4", price: 4500000},
     ]
+    
     getProducts(): Product[] {
         return this.products;
     }
@@ -41,7 +42,12 @@ export class ProductService {
 
     }
 
-    deleteProduct(): string {
-        return 'Deleting the product...';
+    deleteProduct(id: number): boolean {
+        const index = this.products.findIndex(item => item.id === Number(id));
+        if (index === -1) {
+            return false;
+        }
+        this.products.splice(index, 1);
+        return true;
     }
 }
